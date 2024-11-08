@@ -15,7 +15,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productId;
-    @Column(length = 20)
+    @Column(length = 20, unique = true)
     private String productName;
     private int cost;               // 상품원가
     private int price;              // 상품판매가격

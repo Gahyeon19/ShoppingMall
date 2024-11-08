@@ -17,7 +17,7 @@ public class Member {
     private int memberId;
     @Column(length = 20)
     private String memberName;
-    @Column(length = 6)
+    @Column(length = 6, unique = true)
     private String userId;
     @Column(length = 8)
     private String password;
