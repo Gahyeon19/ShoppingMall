@@ -33,11 +33,40 @@ public class Orders {
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
-    private List<OrderProduct> orderProduct;
+    private List<OrderProduct> orderProducts;
 
-    //편의 매서드는 차후 구현
     //주문생성(회원, 주문일자, 상태, 재고(minus), 배송, 주문상품 - 주문 총수량, 총금액)
-    
-    //주문취소(주문취소일자, 상태, 재고(plus), 배송)
+    public static Orders createOrders(Member member, Delivery delivery, OrderProduct... orderProducts) {
+        Orders orders = new Orders(null, member, LocalDateTime.now(), 0, 0,
+                OrderStatus.ORDERED, LocalDateTime.now(), delivery, new ArrayList<>());
+        for (OrderProduct op : orderProducts) {
+            orders.totalQuantity += op.getQuantity();
+            orders.totalPrice += op.getPrice() * op.getQuantity();
+            op.setOrders(orders);
+            orders.orderProducts.add(op);
 
+        }
+        delivery.setOrders(orders);
+        return orders;
+    }
+    //주문취소(주문취소일자, 상태, 재고(plus), 배송)
+    //주문 전체 취소
+    public void totalOrderCancel() {
+        if (this.orderStatus == OrderStatus.ORDERED || this.orderStatus == OrderStatus.PARTIALCANCELED) {
+            this.orderStatus = OrderStatus.TOTALCANCELED;
+            this.statusChangeDate = LocalDateTime.now();
+            this.totalQuantity = 0;
+            this.totalPrice = 0;
+        }
+    }
+
+    //주문 부분 취소
+    public void partialOrderCancel(OrderProduct orderProduct) {
+        if (this.orderStatus == OrderStatus.ORDERED || this.orderStatus == OrderStatus.PARTIALCANCELED) {
+            this.orderStatus = OrderStatus.PARTIALCANCELED;
+            this.statusChangeDate = LocalDateTime.now();
+            this.totalQuantity -= orderProduct.getQuantity();
+            this.totalPrice -= orderProduct.getPrice() * orderProduct.getQuantity();
+        }
+    }
 }
