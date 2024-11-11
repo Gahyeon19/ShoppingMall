@@ -1,7 +1,7 @@
 package com.example.shoppingmall.service;
 
-import com.example.shoppingmall.dto.MemberCreateDto;
-import com.example.shoppingmall.dto.MemberInquiryDto;
+import com.example.shoppingmall.dto.member.MemberCreateDto;
+import com.example.shoppingmall.dto.member.MemberInquiryDto;
 import com.example.shoppingmall.entity.Member;
 import com.example.shoppingmall.entity.MemberStatus;
 import com.example.shoppingmall.exception.NotUniqueUserIdException;
@@ -21,6 +21,15 @@ import java.util.stream.Collectors;
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    MemberInquiryDto getOneMember(String userId) {
+        Optional<Member> byUserId = memberRepository.findByUserId(userId);
+        if(byUserId.isPresent()) {
+            Member member = byUserId.get();
+            return MemberInquiryDto.of(member);
+        }
+        return null;
+    }
+    
     List<MemberInquiryDto> getAllMembers() {
         List<Member> members = memberRepository.findAll();
         return members.stream()
