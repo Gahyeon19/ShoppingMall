@@ -27,7 +27,7 @@ public class Member {
     private String phone;
     @Column(length = 100)
     private String address;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.ORDINAL)       //EnumType.STRING
     private MemberStatus memberStatus;      // refactoring 필요
     private LocalDate registerDate;
     private LocalDate leaveDate;

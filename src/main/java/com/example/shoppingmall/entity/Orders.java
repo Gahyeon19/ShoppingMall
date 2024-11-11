@@ -36,7 +36,7 @@ public class Orders {
     private List<OrderProduct> orderProducts;
 
     //주문생성(회원, 주문일자, 상태, 재고(minus), 배송, 주문상품 - 주문 총수량, 총금액)
-    public static Orders createOrders(Member member, Delivery delivery, OrderProduct... orderProducts) {
+    public static Orders createOrders(Member member, Delivery delivery, List<OrderProduct> orderProducts) {
         Orders orders = new Orders(null, member, LocalDateTime.now(), 0, 0,
                 OrderStatus.ORDERED, LocalDateTime.now(), delivery, new ArrayList<>());
         for (OrderProduct op : orderProducts) {
