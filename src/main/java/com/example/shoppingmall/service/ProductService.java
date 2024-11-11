@@ -1,7 +1,7 @@
 package com.example.shoppingmall.service;
 
-import com.example.shoppingmall.dto.ProductCreateDto;
-import com.example.shoppingmall.dto.ProductInquiryDto;
+import com.example.shoppingmall.dto.product.ProductCreateDto;
+import com.example.shoppingmall.dto.product.ProductInquiryDto;
 import com.example.shoppingmall.entity.Product;
 import com.example.shoppingmall.entity.ProductStatus;
 import com.example.shoppingmall.exception.NotUniqueProductNameException;
