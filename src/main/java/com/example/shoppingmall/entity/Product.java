@@ -17,6 +17,7 @@ public class Product {
     private int productId;
     @Column(length = 20, unique = true)
     private String productName;
+    @Column(nullable = false)
     private int cost;               // 상품원가
     private int price;              // 상품판매가격
     @Enumerated(EnumType.STRING)
