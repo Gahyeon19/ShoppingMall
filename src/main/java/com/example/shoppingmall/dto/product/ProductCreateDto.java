@@ -4,13 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductCreateDto {
+    @NotNull
     private String productName;
-    private int cost;
-    private int price;
+    @NotNull
+    private Integer cost;
+    @NotNull
+    private Integer price;
 }
