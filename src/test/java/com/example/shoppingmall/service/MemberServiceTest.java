@@ -1,12 +1,11 @@
 package com.example.shoppingmall.service;
 
-import com.example.shoppingmall.dto.MemberCreateDto;
-import com.example.shoppingmall.dto.MemberInquiryDto;
+import com.example.shoppingmall.dto.member.MemberCreateDto;
+import com.example.shoppingmall.dto.member.MemberInquiryDto;
 import com.example.shoppingmall.entity.Member;
 import com.example.shoppingmall.entity.MemberStatus;
 import com.example.shoppingmall.exception.NotUniqueUserIdException;
 import com.example.shoppingmall.repository.MemberRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

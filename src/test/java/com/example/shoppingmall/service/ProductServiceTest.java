@@ -1,6 +1,6 @@
 package com.example.shoppingmall.service;
 
-import com.example.shoppingmall.dto.ProductCreateDto;
+import com.example.shoppingmall.dto.product.ProductCreateDto;
 import com.example.shoppingmall.exception.NotUniqueProductNameException;
 import com.example.shoppingmall.repository.ProductRepository;
 import org.assertj.core.api.Assertions;
@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
