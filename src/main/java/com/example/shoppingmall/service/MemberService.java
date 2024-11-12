@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class MemberService {
     private final MemberRepository memberRepository;
 
-    MemberInquiryDto getOneMember(String userId) {
+    public MemberInquiryDto getOneMember(String userId) {                          // 회원 한명 조회
         Optional<Member> byUserId = memberRepository.findByUserId(userId);
         if(byUserId.isPresent()) {
             Member member = byUserId.get();
@@ -29,8 +29,8 @@ public class MemberService {
         }
         return null;
     }
-    
-    List<MemberInquiryDto> getAllMembers() {
+
+    public List<MemberInquiryDto> getAllMembers() {                              // 모든 회원 조회
         List<Member> members = memberRepository.findAll();
         return members.stream()
                 .map(m -> new MemberInquiryDto(
@@ -40,7 +40,7 @@ public class MemberService {
                 .collect(Collectors.toList());
     }
 
-    MemberInquiryDto addMember(MemberCreateDto memberDto) {
+    public MemberInquiryDto addMember(MemberCreateDto memberDto) {                 // 회원가입
         if (checkUniqueUserId(memberDto.getUserId())) {
             Member member = new Member(
                     0,
@@ -59,7 +59,7 @@ public class MemberService {
         return null;
     }
 
-    boolean checkUniqueUserId(String userId) {
+    boolean checkUniqueUserId(String userId) {                                  // 회원ID 중복확인
         Optional<Member> findUser = memberRepository.findByUserId(userId);
         if (findUser.isPresent()) {
             throw new NotUniqueUserIdException("동일한 ID가 존재합니다.");
