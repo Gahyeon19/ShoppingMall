@@ -39,7 +39,7 @@ public class OrderProduct {
 
     //취소 : status 변경, order의 status가 ordered이거나 partialCanceled인 경우에만 취소 가능
     //재고가 +되어야 하고, order의 status와 statusChangeDate가 변경되어야 하고 order의 totalQuantity와 totalPrice가 변경되어야 함
-    public void cancelOrderProduct(Stock stock) {
+    public void cancelOrderProducts(Stock stock) {
         if (orders.getOrderStatus() == OrderStatus.ORDERED || orders.getOrderStatus() == OrderStatus.PARTIALCANCELED) {
             this.orderProductStatus = OrderProductStatus.CANCELED;
             stock.increaseStock(quantity);
