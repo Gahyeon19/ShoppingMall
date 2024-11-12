@@ -1,4 +1,4 @@
-package com.example.shoppingmall.dto;
+package com.example.shoppingmall.dto.stock;
 
 import com.example.shoppingmall.entity.WareHouse;
 import lombok.AllArgsConstructor;
